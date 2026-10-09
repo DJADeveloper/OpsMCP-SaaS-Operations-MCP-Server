@@ -1,0 +1,121 @@
+{
+  "organizations": [
+    {
+      "id": "acme",
+      "name": "Acme SaaS"
+    },
+    {
+      "id": "beacon",
+      "name": "Beacon Software"
+    }
+  ],
+  "customers": [
+    {
+      "id": "cus-101",
+      "organization_id": "acme",
+      "name": "Northwind Labs",
+      "plan": "Enterprise",
+      "mrr_usd": 4800,
+      "status": "active",
+      "health_score": 63,
+      "usage_change_pct": -24
+    },
+    {
+      "id": "cus-102",
+      "organization_id": "acme",
+      "name": "Pinecrest Analytics",
+      "plan": "Growth",
+      "mrr_usd": 1400,
+      "status": "active",
+      "health_score": 91,
+      "usage_change_pct": 12
+    },
+    {
+      "id": "cus-201",
+      "organization_id": "beacon",
+      "name": "Confidential Beacon Client",
+      "plan": "Enterprise",
+      "mrr_usd": 9900,
+      "status": "active",
+      "health_score": 27,
+      "usage_change_pct": -55
+    }
+  ],
+  "tickets": [
+    {
+      "id": "tic-11",
+      "organization_id": "acme",
+      "customer_id": "cus-101",
+      "status": "open",
+      "severity": "high",
+      "subject": "SSO sign-in intermittent",
+      "created_at": "2026-10-01T10:00:00Z"
+    },
+    {
+      "id": "tic-12",
+      "organization_id": "acme",
+      "customer_id": "cus-101",
+      "status": "open",
+      "severity": "medium",
+      "subject": "Export times out",
+      "created_at": "2026-10-02T09:00:00Z"
+    },
+    {
+      "id": "tic-13",
+      "organization_id": "acme",
+      "customer_id": "cus-102",
+      "status": "closed",
+      "severity": "low",
+      "subject": "Dashboard label",
+      "created_at": "2026-09-29T13:00:00Z"
+    },
+    {
+      "id": "tic-21",
+      "organization_id": "beacon",
+      "customer_id": "cus-201",
+      "status": "open",
+      "severity": "critical",
+      "subject": "Private integration outage",
+      "created_at": "2026-10-01T12:00:00Z"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc-11",
+      "organization_id": "acme",
+      "title": "SSO provider errors",
+      "summary": "Intermittent SSO errors affecting Northwind Labs",
+      "severity": "high",
+      "status": "investigating",
+      "customer_ids": [
+        "cus-101"
+      ]
+    },
+    {
+      "id": "inc-12",
+      "organization_id": "acme",
+      "title": "Historical export latency",
+      "summary": "Export worker backlog resolved",
+      "severity": "medium",
+      "status": "resolved",
+      "customer_ids": [
+        "cus-101"
+      ]
+    },
+    {
+      "id": "inc-21",
+      "organization_id": "beacon",
+      "title": "Confidential Beacon outage",
+      "summary": "Private incident for Beacon",
+      "severity": "critical",
+      "status": "investigating",
+      "customer_ids": [
+        "cus-201"
+      ]
+    }
+  ],
+  "policies": {
+    "acme": "Read-only operational intelligence. Escalate high-severity incidents to a human owner. Do not describe health scores as churn predictions.",
+    "beacon": "Beacon internal policy: restricted to Beacon organization."
+  }
+}
