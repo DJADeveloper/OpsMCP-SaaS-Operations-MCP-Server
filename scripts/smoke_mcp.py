@@ -40,6 +40,16 @@ async def verify_organization(
             assert not own.isError, own
             assert own_name in str(own.content)
 
+            customers = await session.call_tool("list_customers", {"limit": 50})
+            assert not customers.isError, customers
+            assert own_customer_id in str(customers.content)
+            assert foreign_customer_id not in str(customers.content)
+
+            tickets = await session.call_tool(
+                "list_open_tickets", {"customer_id": own_customer_id}
+            )
+            assert not tickets.isError, tickets
+
             health = await session.call_tool(
                 "get_account_health", {"customer_id": own_customer_id}
             )
@@ -64,6 +74,8 @@ async def verify_organization(
             summary = await session.read_resource("company://summary")
             assert policy.contents, "Expected nonempty policies resource"
             assert organization_id in str(summary), "Summary must reflect host scope"
+            assert foreign_customer_id not in str(summary)
+            assert foreign_customer_id not in str(policy)
 
 
 async def main() -> None:
